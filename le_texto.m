@@ -1,0 +1,11 @@
+function [f,y,vector,x,H] = le_texto(text)
+    alfa=fopen('Alfabeto_BaseDados.txt');
+    string=fscanf(text,'%c');
+    alfabeto=fscanf(alfa,'%c');
+    alfabeto = unique(alfabeto);
+    ab=erase(string,[".","!","?",",","","@",'"',"%","*","+","_","-","\t","»","«","<",">"," ",";",":","(",")","[","]","{","}","/","¨","'",newline]);
+    x=uint8(ab);
+    y=uint8(alfabeto);
+    y = reshape(y,[],1);
+    [f,vector] = faz_freq_abs(x,y);
+    H = calcula_entropia(f);
